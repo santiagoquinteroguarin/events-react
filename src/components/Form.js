@@ -44,6 +44,13 @@ const Form = (props) => {
         createEvent(event);
 
         // reset form
+        setUpgradeEvent({
+            name: '',
+            attendant: '',
+            date: '',
+            hour: '',
+            note: '',
+        });
     }
 
     return (
