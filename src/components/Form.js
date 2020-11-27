@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import uuid from 'uuidv4';
+import uuid from 'react-uuid';
 import PropTypes from 'prop-types';
 
 const Form = (props) => {
@@ -20,7 +20,7 @@ const Form = (props) => {
     const handleChange = (e) => {
         setUpgradeEvent({
             ...event,
-            [e.target.name]:[e.target.value]
+            [e.target.name]:e.target.value
         })
     }
 
@@ -41,7 +41,7 @@ const Form = (props) => {
         // assign an ID
         event.id = uuid();
 
-        // Create the event
+        //Create the event
         createEvent(event);
 
         // reset form
@@ -67,8 +67,8 @@ const Form = (props) => {
                     name="name"
                     className="u-full-width"
                     placeholder="Evento"
-                    onChange="handleChange"
-                    value="name"
+                    onChange={handleChange}
+                    value={name}
                 />
 
                 <label>Nombre del participante</label>
@@ -77,8 +77,8 @@ const Form = (props) => {
                     name="attendant"
                     className="u-full-width"
                     placeholder="Nombre participante al evento"
-                    onChange="handleChange"
-                    value="attendant"
+                    onChange={handleChange}
+                    value={attendant}
                 />
 
                 <label>Fecha del evento</label>
@@ -86,8 +86,8 @@ const Form = (props) => {
                     type="date"
                     name="date"
                     className="u-full-width"
-                    onChange="handleChange"
-                    value="date"
+                    onChange={handleChange}
+                    value={date}
                 />
 
                 <label>Hora del evento</label>
@@ -95,16 +95,16 @@ const Form = (props) => {
                     type="time"
                     name="hour"
                     className="u-full-width"
-                    onChange="handleChange"
-                    value="hour"
+                    onChange={handleChange}
+                    value={hour}
                 />
 
                 <label>Nota</label>
                 <textarea
                     className="u-full-width"
                     name="note"
-                    onChange="handleChange"
-                    value="note"
+                    onChange={handleChange}
+                    value={note}
                 ></textarea>
 
                 <button
