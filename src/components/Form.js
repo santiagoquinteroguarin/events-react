@@ -1,8 +1,25 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 const Form = (props) => {
 
-    const {  } = props;
+    // create state of events
+    const [event, setUpgradeEvent] = useState({
+        name: '',
+        attendant: '',
+        date: '',
+        hour: '',
+        note: '',
+    });
+
+    const handleChange = (e) => {
+        setUpgradeEvent({
+            ...event,
+            [e.target.name]:[e.target.value]
+        })
+    }
+
+    const { name, attendant, date, hour, note } = event;
+    
     return (
         <Fragment>
             <h2>Crear Evento</h2>
@@ -11,9 +28,11 @@ const Form = (props) => {
                 <label>Nombre del evento</label>
                 <input 
                     type="text"
-                    name="event"
+                    name="name"
                     className="u-full-width"
                     placeholder="Evento"
+                    onChange="handleChange"
+                    value="name"
                 />
 
                 <label>Nombre del participante</label>
@@ -22,6 +41,8 @@ const Form = (props) => {
                     name="attendant"
                     className="u-full-width"
                     placeholder="Nombre participante al evento"
+                    onChange="handleChange"
+                    value="attendant"
                 />
 
                 <label>Fecha del evento</label>
@@ -29,6 +50,8 @@ const Form = (props) => {
                     type="date"
                     name="date"
                     className="u-full-width"
+                    onChange="handleChange"
+                    value="date"
                 />
 
                 <label>Hora del evento</label>
@@ -36,12 +59,16 @@ const Form = (props) => {
                     type="time"
                     name="hour"
                     className="u-full-width"
+                    onChange="handleChange"
+                    value="hour"
                 />
 
                 <label>Nota</label>
                 <textarea
                     className="u-full-width"
                     name="note"
+                    onChange="handleChange"
+                    value="note"
                 ></textarea>
 
                 <button
