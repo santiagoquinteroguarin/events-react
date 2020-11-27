@@ -1,10 +1,24 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Form from '../components/Form';
 import Event from '../components/Event';
 
 function App() {
 
+  const eventsInit = JSON.parse(localStorage.getItem('events'));
+  if(!eventsInit) {
+    eventsInit = [];
+  }
+
   const [events, setSavedEvents] = useState([]);
+
+  // Use effect para realizar ciertas operaciones cuando el state cambia
+  useEffect(() => {
+      if(eventsInit) {
+        localStorage.setItem('events',JSON.stringify(events));
+      } else {
+        localStorage.setItem('events',JSON.stringify([]));
+      }
+  },[events]);
 
   // funcion que toma los eventos actuales y agrega la nueva
   const createEvent = event => {
@@ -20,6 +34,9 @@ function App() {
     setSavedEvents(newEvents);
   }
 
+  // validation message
+  const title = events.length === 0 ? 'No hay eventos' : 'Administra tus eventos' ;
+
   return (
     <Fragment>
         <h1>Administrador De Eventos</h1>
@@ -32,7 +49,7 @@ function App() {
               />
             </div>
             <div className="one-half column">
-              <h2>Administra tus eventos</h2>
+              <h2>{title}</h2>
               {events.map(event => (
                 <Event 
                   key={event.id}
