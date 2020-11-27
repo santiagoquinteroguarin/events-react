@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import uuid from 'uuid/v4';
 
 const Form = (props) => {
 
@@ -31,7 +32,11 @@ const Form = (props) => {
             return;
         }
 
+        // delete message
+        setUpgradeError(false);
+
         // assign an ID
+        event.id = uuid();
 
         // Create the event
 
