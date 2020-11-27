@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import Form from '../components/Form';
+import Event from '../components/Event';
 
 function App() {
 
@@ -25,7 +26,13 @@ function App() {
               />
             </div>
             <div className="one-half column">
-
+              <h2>Administra tus eventos</h2>
+              {events.map(event => (
+                <Event 
+                  key={event.id}
+                  event={event}
+                />
+              ))}
             </div>
           </div>
         </div>
