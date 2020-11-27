@@ -11,6 +11,8 @@ const Form = (props) => {
         note: '',
     });
 
+    const [error, setUpgradeError] = useState(false);
+
     const handleChange = (e) => {
         setUpgradeEvent({
             ...event,
@@ -20,11 +22,29 @@ const Form = (props) => {
 
     const { name, attendant, date, hour, note } = event;
     
+    const submitEvent = (e) => {
+        e.preventDefault();
+
+        // validation
+        if(name.trim() === '' || attendant.trim() === '' || date.trim() === '' || hour.trim() === '' || note.trim() === '') {
+            setUpgradeError(true);
+            return;
+        }
+
+        // assign an ID
+
+        // Create the event
+
+        // reset form
+    }
+
     return (
         <Fragment>
             <h2>Crear Evento</h2>
 
-            <form>
+            {error ? <p className="alert-error">Todos los campos son obligatorios</p> : null}
+
+            <form onSubmit={submitEvent}>
                 <label>Nombre del evento</label>
                 <input 
                     type="text"
