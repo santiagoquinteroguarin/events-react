@@ -14,6 +14,12 @@ function App() {
     ]);
   }
 
+  // funcion que elimina un evento por su id
+  const deleteEvent = id => {
+    const newEvents = events.filter(event => event.id !== id);
+    setSavedEvents(newEvents);
+  }
+
   return (
     <Fragment>
         <h1>Administrador De Eventos</h1>
@@ -31,6 +37,7 @@ function App() {
                 <Event 
                   key={event.id}
                   event={event}
+                  deleteEvent={deleteEvent}
                 />
               ))}
             </div>
