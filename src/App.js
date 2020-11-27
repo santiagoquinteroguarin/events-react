@@ -1,10 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import Form from '../components/Form';
-import Event from '../components/Event';
+import Form from './components/Form';
+import Event from './components/Event';
 
 function App() {
 
-  const eventsInit = JSON.parse(localStorage.getItem('events'));
+  let eventsInit = JSON.parse(localStorage.getItem('events'));
   if(!eventsInit) {
     eventsInit = [];
   }
@@ -13,6 +13,8 @@ function App() {
 
   // Use effect para realizar ciertas operaciones cuando el state cambia
   useEffect(() => {
+    let eventsInit = JSON.parse(localStorage.getItem('events'));
+    
       if(eventsInit) {
         localStorage.setItem('events',JSON.stringify(events));
       } else {

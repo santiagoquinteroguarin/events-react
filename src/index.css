@@ -35,7 +35,7 @@ h1, h2  {
   margin:0;
 }
 .events-list .media-body button {
-  margin-top: 1rem!important;
+  margin-top: 1rem !important;
 }
 .events-list .media-body span {
   font-weight: bold;

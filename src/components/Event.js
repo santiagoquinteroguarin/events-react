@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Event = (props) => {
 
@@ -19,6 +20,11 @@ const Event = (props) => {
             >Eliminar &times;</button>
         </div>
     );
+}
+
+Event.propTypes = {
+    event: PropTypes.object.isRequired,
+    deleteEvent: PropTypes.func.isRequired
 }
 
 export default Event;
