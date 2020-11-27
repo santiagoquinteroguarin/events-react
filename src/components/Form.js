@@ -3,6 +3,8 @@ import uuid from 'uuid/v4';
 
 const Form = (props) => {
 
+    const { createEvent } = props;
+
     // create state of events
     const [event, setUpgradeEvent] = useState({
         name: '',
@@ -39,6 +41,7 @@ const Form = (props) => {
         event.id = uuid();
 
         // Create the event
+        createEvent(event);
 
         // reset form
     }

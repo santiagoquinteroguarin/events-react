@@ -1,7 +1,18 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import Form from '../components/Form';
 
 function App() {
+
+  const [events, setSavedEvents] = useState([]);
+
+  // funcion que toma los eventos actuales y agrega la nueva
+  const createEvent = event => {
+    setSavedEvents([
+      ...events,
+      event
+    ]);
+  }
+
   return (
     <Fragment>
         <h1>Administrador De Eventos</h1>
@@ -9,7 +20,9 @@ function App() {
         <div className="container">
           <div className="row">
             <div className="one-half column">
-              <Form />
+              <Form 
+                createEvent={createEvent}
+              />
             </div>
             <div className="one-half column">
 
