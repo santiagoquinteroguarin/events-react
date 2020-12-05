@@ -67,6 +67,8 @@ input[type="time"] {
   background: white;
   border-bottom: 1px solid #e1e1e1;
   color: black;
+  margin-bottom: 10px;
+  border-radius: 1rem;
 }
 
 .event p {
@@ -76,16 +78,6 @@ input[type="time"] {
 
 .event p span {
   font-weight: normal;
-}
-
-.event:first-of-type {
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-}
-
-.event:last-of-type {
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
 }
 
 .button.delete,

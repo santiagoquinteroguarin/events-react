@@ -12,7 +12,7 @@ function App() {
   }
 
   // ?8. state for events
-  const [events, setSavedEvents] = useState([]);
+  const [events, setSavedEvents] = useState(eventsInit);
 
   // ?14. Use effect para realizar ciertas operaciones cuando el state cambia
   // para que se ejecute una vez, pasar un []
