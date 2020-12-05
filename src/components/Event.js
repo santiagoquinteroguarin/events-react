@@ -1,4 +1,5 @@
 import React from 'react';
+// ?17. 
 import PropTypes from 'prop-types';
 
 const Event = (props) => {
@@ -16,6 +17,7 @@ const Event = (props) => {
 
             <button
                 className="button delete u-full-width"
+                // remove event - App para no pasar el state, arrow para esperar el evento
                 onClick={() => deleteEvent(event.id)}
             >Eliminar &times;</button>
         </div>

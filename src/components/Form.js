@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 
 const Form = (props) => {
 
+    //?8. 
     const { createEvent } = props;
 
-    // create state of events
+    // 2. create state of events - local state
     const [event, setUpgradeEvent] = useState({
         name: '',
         attendant: '',
@@ -15,36 +16,42 @@ const Form = (props) => {
         note: '',
     });
 
+    // 7. state for error - boolean
     const [error, setUpgradeError] = useState(false);
 
+    // 3. event for modify the state
     const handleChange = (e) => {
+        // 4. modify state --- (Error in react event.name = e.target.value)
         setUpgradeEvent({
             ...event,
-            [e.target.name]:e.target.value
+            [e.target.name] : e.target.value
         })
     }
 
+    // 5. extract
     const { name, attendant, date, hour, note } = event;
     
     const submitEvent = (e) => {
+        // no send method get or query string
         e.preventDefault();
 
-        // validation
+        // 6. validation
         if(name.trim() === '' || attendant.trim() === '' || date.trim() === '' || hour.trim() === '' || note.trim() === '') {
             setUpgradeError(true);
+            // return para que cuando haya un error, no se siga ejecutando el codigo
             return;
         }
 
-        // delete message
+        // delete prevent message
         setUpgradeError(false);
 
-        // assign an ID
+        // 7. generate - assign an ID
         event.id = uuid();
 
-        //Create the event
+        // ?8. Create the event
         createEvent(event);
 
-        // reset form
+        // ?10. reset form
         setUpgradeEvent({
             name: '',
             attendant: '',
@@ -58,8 +65,9 @@ const Form = (props) => {
         <Fragment>
             <h2>Crear Evento</h2>
 
-            {error ? <p className="alert-error">Todos los campos son obligatorios</p> : null}
+            {error ? <p className="alert-error">los campos son obligatorios 🤨</p> : null}
 
+            {/* 1. create form */}
             <form onSubmit={submitEvent}>
                 <label>Nombre del evento</label>
                 <input 
@@ -67,7 +75,9 @@ const Form = (props) => {
                     name="name"
                     className="u-full-width"
                     placeholder="Evento"
+                    // 3. cta
                     onChange={handleChange}
+                    // 5. reset
                     value={name}
                 />
 
@@ -103,13 +113,14 @@ const Form = (props) => {
                 <textarea
                     className="u-full-width"
                     name="note"
+                    placeholder="nota"
                     onChange={handleChange}
                     value={note}
                 ></textarea>
 
                 <button
                     type="submit"
-                    className="u-full-width button-primary"
+                    className="u-full-width button-primary btn-submit"
                 >Agregar Evento</button>
             </form>
         </Fragment>

@@ -1,56 +1,65 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import Form from './components/Form';
 import Event from './components/Event';
+import Particles from './components/Particles';
 
 function App() {
 
+  // ?15. si no hay eventos, igual a []
   let eventsInit = JSON.parse(localStorage.getItem('events'));
   if(!eventsInit) {
     eventsInit = [];
   }
 
+  // ?8. state for events
   const [events, setSavedEvents] = useState([]);
 
-  // Use effect para realizar ciertas operaciones cuando el state cambia
+  // ?14. Use effect para realizar ciertas operaciones cuando el state cambia
+  // para que se ejecute una vez, pasar un []
   useEffect(() => {
     let eventsInit = JSON.parse(localStorage.getItem('events'));
     
+    // ?16.
       if(eventsInit) {
         localStorage.setItem('events',JSON.stringify(events));
       } else {
+        // sino hay nada
         localStorage.setItem('events',JSON.stringify([]));
       }
   },[events]);
 
-  // funcion que toma los eventos actuales y agrega la nueva
+  // ?8. funcion que toma los eventos actuales y agrega la nueva
   const createEvent = event => {
+    // ?9. saved events
     setSavedEvents([
       ...events,
       event
     ]);
   }
 
-  // funcion que elimina un evento por su id
+  // ?12. funcion que elimina un evento por su id
   const deleteEvent = id => {
     const newEvents = events.filter(event => event.id !== id);
     setSavedEvents(newEvents);
   }
 
-  // validation message
+  // ?13.validation message
   const title = events.length === 0 ? 'No hay eventos' : 'Administra tus eventos' ;
 
   return (
     <Fragment>
-        <h1>Administrador De Eventos</h1>
+        <Particles/>
+        <h1>Administrador De Eventos 📬</h1>
 
         <div className="container">
           <div className="row">
-            <div className="one-half column">
+            <div className="one-half column item">
               <Form 
+                // ?8.
                 createEvent={createEvent}
               />
             </div>
-            <div className="one-half column">
+            <div className="one-half column item">
               <h2>{title}</h2>
               {events.map(event => (
                 <Event 
